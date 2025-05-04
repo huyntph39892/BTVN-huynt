@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Tính BMI</h1>
+    <script>
+      let weight = prompt("Nhap can");
+      let height = prompt("Nhap chieu cao");
+      function calcBMI(w, h) {
+        let BMI = w / h ** 2;
+        if (BMI < 18.5) {
+          console.log(`BMI=${BMI}`, "thieu can");
+        } else if (18.5 <= BMI < 23) {
+          console.log(`BMI=${BMI}`, "binh thuong");
+        } else if (23 <= BMI < 25) {
+          console.log(`BMI=${BMI}`, "thua can");
+        } else {
+          console.log(`BMI=${BMI}`, "beo phi");
+        }
+      }
+      calcBMI(weight, height);
+    </script>
+  </body>
+</html>

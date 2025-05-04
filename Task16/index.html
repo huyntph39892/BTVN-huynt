@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Task 16</h1>
+    <script>
+      // let input = prompt("nhap km:");
+      let km = parseFloat(prompt("nhap km"));
+      function taxiBill(km) {
+        if (isNaN(km) || km <= 0) {
+          document.write("ko hop le");
+          // console.log("ko hop le");
+          return;
+        }
+        if (km <= 1) {
+          document.write(`${"can tra 10k"}`);
+          return;
+        } else if (1 < km <= 30) {
+          document.write(
+            `so km da di ${km} va tien can tra ${10000 + (km - 1) * 8000}d`
+          );
+          return;
+        } else {
+          document.write(
+            `so km da di ${km} va tien can tra ${
+              29 * 8000 + (km - 30) * 7000 + 10000
+            }d`
+          );
+          return;
+        }
+        // console.log(bill);
+      }
+      taxiBill(km);
+    </script>
+  </body>
+</html>

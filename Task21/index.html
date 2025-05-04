@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function cleanFalsyValues(arr) {
+        if (Array.isArray(arr)) {
+          return arr.filter((item) => Boolean(item));
+        }
+        return false;
+      }
+      console.log(
+        cleanFalsyValues([1, 0, "", null, "hello", undefined, NaN, 2, 3])
+      );
+
+      var line = "---------------------";
+      console.log(line);
+
+      function filterEvenNumbers(arr) {
+        if (Array.isArray(arr)) {
+          return arr.filter((item) => item % 2 === 0);
+        }
+        return false;
+      }
+      console.log(filterEvenNumbers([1, 2, 3, 4, 5, 6]));
+      console.log(filterEvenNumbers([1, 3, 5, 7]));
+      console.log(filterEvenNumbers([]));
+      console.log(filterEvenNumbers([-2, -1, 0, 1, 2]));
+      console.log(line);
+
+      function filterLongStrings(arr) {
+        if (Array.isArray(arr)) {
+          return arr.filter((item) => item.length > 5);
+        }
+      }
+      console.log(
+        filterLongStrings(["hello", "world", "javascript", "nodejs"])
+      );
+      console.log(
+        filterLongStrings(["hi", "hello world", "a b c", "goodbye!!"])
+      );
+      console.log(filterLongStrings(["hi", "bye", "yes"]));
+      console.log(line);
+
+      function findMinMaxAverage(arr) {
+        if (Array.isArray(arr)) {
+          const min = Math.min(...arr);
+          const max = Math.max(...arr);
+          const minIndex = arr.indexOf(min);
+          const maxIndex = arr.indexOf(max);
+          const primeNumbers = arr.filter((num) => {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+              if (num % i === 0) return false;
+            }
+            return true;
+          });
+          const primeAverage =
+            primeNumbers.reduce((sum, num) => sum + num, 0) /
+            primeNumbers.length;
+          return { max, maxIndex, min, minIndex, primeAverage };
+        }
+        return false;
+      }
+      console.log(findMinMaxAverage([3, 1, 4, 1, 5, 9, 2, 6]));
+      console.log(findMinMaxAverage([5, 5, 2, 2, 1]));
+      console.log(findMinMaxAverage([-3, 7, -8, 11, 0]));
+      console.log(line);
+      function insertNumber(arr, num) {
+        arr = arr.filter((item) => typeof item === "number" && !isNaN(item));
+        if (typeof num !== "number" || isNaN(num)) {
+          console.log(arr.sort((a, b) => a - b));
+          return;
+        }
+        arr.push(num);
+        arr.sort((a, b) => a - b);
+        console.log(arr);
+      }
+      insertNumber([1, 3, 5, 7, 9], 6); 
+      insertNumber([3, "hello", 1, NaN, 4, null], 2);
+      insertNumber([], 5);
+      insertNumber([-1, 10, -5, "abc"], -3);
+      insertNumber([5, 2, 8], NaN); 
+      console.log(line);
+    </script>
+  </body>
+</html>

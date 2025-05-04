@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Task 15</h1>
+    <script>
+      let a = parseFloat(prompt("nhap a:"));
+      let b = parseFloat(prompt("nhap b:"));
+      function isSameSign(a, b) {
+        if (a > 0 && b > 0) {
+          return true;
+        } else if (a < 0 && b < 0) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      console.log(isSameSign(a, b));
+    </script>
+  </body>
+</html>

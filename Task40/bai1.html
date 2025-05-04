@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getUser(userId, callback) {
+        setTimeout(() => {
+          callback({ id: userId, name: "John", age: 30 });
+        }, 1000);
+      }
+
+      function getPurchases(userId, callback) {
+        setTimeout(() => {
+          callback([
+            { id: 1, userId: userId, product: "Laptop", price: 1000 },
+            { id: 2, userId: userId, product: "Phone", price: 2000 },
+          ]);
+        }, 1000);
+      }
+
+      function getProductDetails(
+        productId,
+        productName,
+        productPrice,
+        callback
+      ) {
+        setTimeout(() => {
+          callback({ id: productId, name: productName, price: productPrice });
+        }, 1000);
+      }
+      getUser(1, (user) => {
+        console.log(user);
+        getPurchases(user.id, (purchases) => {
+          console.log( purchases);
+          let total = 0;
+          purchases.forEach((purchase) => {
+            getProductDetails(
+              purchase.id,
+              purchase.product,
+              purchase.price,
+              (productDetails) => {
+                console.log(productDetails);
+                total += productDetails.price;
+                console.log( total);
+              }
+            );
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

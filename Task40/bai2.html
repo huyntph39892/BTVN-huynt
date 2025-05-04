@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getUserPromise(userId, callback) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+           const callback = ({ id: userId, name: "John", age: 30 });
+           resolve(callback)
+        }, 1000);
+    })
+}
+
+function getPurchasesPromise(userId, callback) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+           const callback = ([
+                { id: 1, userId: userId, product: "Laptop", price: 1000 },
+                { id: 2, userId: userId, product: "Phone", price: 2000 },
+            ]);
+           resolve(callback)
+        }, 1000);
+    })
+}
+
+function getProductDetailsPromise(productId, productName, callback) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+           const callback = ({ id: productId, name: productName, price: 1000 });
+           resolve(callback)
+        }, 1000);
+    })
+}
+
+getUserPromise(1).then((user) => {
+    console.log(user)
+        return getPurchasesPromise(user.id)
+            .then((purchases) => {
+                console.log(purchases)
+                const total = purchases.reduce((acc, cur) => {
+                    acc += cur.price
+                    return acc
+                },0)
+                console.log( total)
+                return purchases.map((product) => {
+                    getProductDetailsPromise(product.id, product.product)
+                        .then((productDetail) => {
+                            console.log(productDetail)
+                        })
+                })
+            })
+})
+    </script>
+  </body>
+</html>

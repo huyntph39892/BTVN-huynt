@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0e7ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.todo-container {
+    background-color: #f8fafc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+h1 {
+    text-align: center;
+    color: #1f2937;
+    margin-bottom: 20px;
+}
+
+.input-section {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+#todoInput {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+button:hover {
+    background-color: #2563eb;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.filter-section button {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+
+.filter-section button:hover {
+    background-color: #d1d5db;
+}
+
+.filter-section button.active {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+.todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #d1d5db;
+}
+
+.todo-item.completed span.task-text {
+    text-decoration: line-through;
+    color: #6b7280;
+}
+
+.todo-item span.task-text {
+    flex: 1;
+    font-size: 16px;
+    color: #1f2937;
+}
+
+.todo-item .status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.todo-item .status.completed {
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+.todo-item .status.active {
+    background-color: #f59e0b;
+    color: #ffffff;
+}
+
+.todo-item button {
+    margin-left: 10px;
+}
+
+.todo-item button.delete {
+    background-color: #ef4444;
+}
+
+.todo-item button.delete:hover {
+    background-color: #dc2626;
+}
+
+.todo-item button.edit {
+    background-color: #8b5cf6;
+}
+
+.todo-item button.edit:hover {
+    background-color: #7c3aed;
+}
+
+.error-message {
+    color: #dc2626;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}

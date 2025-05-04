@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hiệu Ứng Accordion</title>
+    <style>
+      .accordion {
+        width: 500px;
+        margin: 50px auto;
+        font-family: Arial, sans-serif;
+      }
+      .accordion-item {
+        border-bottom: 1px solid #ddd;
+      }
+      .accordion-question {
+        background-color: #f4f4f4;
+        padding: 15px;
+        cursor: pointer;
+        margin: 0;
+        font-size: 1.1em;
+      }
+      .accordion-question:hover {
+        background-color: #e0e0e0;
+      }
+      .accordion-answer {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 15px;
+        background-color: #fff;
+        transition: max-height 0.3s ease, padding 0.3s ease; /* Hiệu ứng mượt */
+      }
+      .accordion-answer.active {
+        max-height: 100px; /* Điều chỉnh theo nội dung */
+        padding: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accordion">
+      <div class="accordion-item">
+        <h3 class="accordion-question">Câu hỏi 1: HTML là gì?</h3>
+        <div class="accordion-answer">
+          HTML (HyperText Markup Language) là ngôn ngữ đánh dấu dùng để tạo cấu
+          trúc cho trang web.
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-question">Câu hỏi 2: CSS có tác dụng gì?</h3>
+        <div class="accordion-answer">
+          CSS (Cascading Style Sheets) dùng để định dạng và trang trí giao diện
+          cho trang web.
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-question">Câu hỏi 3: JavaScript làm được gì?</h3>
+        <div class="accordion-answer">
+          JavaScript là ngôn ngữ lập trình giúp trang web tương tác và xử lý
+          logic phía client.
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

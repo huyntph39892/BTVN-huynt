@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 40px;
+    border-radius: 26px;
+    background: #EFF0F1;
+    box-shadow: 0px 76px 27px 0px rgba(6, 27, 82, 0.10);
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #3e3e3e;
+    margin-bottom: 20px;
+}
+
+.the {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.the button {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+}
+
+.the button:hover {
+    background-color: #eaeaea;
+}
+
+.anh {
+    display: flex;
+    gap: 20px;
+}
+
+.anhthe {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    width: 30%;
+    transition: transform 0.3s ease;
+}
+
+.anhthe:hover {
+    transform: translateY(-10px);
+}
+
+.anhthe img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.sub-images {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.sub-images img {
+    width: 32%;
+    border-radius: 10px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.info h3 {
+    font-size: 1rem;
+    color: #3e3e3e;
+}
+
+.info span {
+    font-size: 0.9rem;
+    color: #888;
+    display: flex;
+    align-items: center;
+}
+
+.info span img {
+    width: 20px;
+    margin-left: 5px;
+}

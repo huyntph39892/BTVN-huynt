@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const users = [
+        { fullname: "Hoang Thi K", age: 20, address: "LangSon" },
+        { fullname: "Le Thi X", age: 22, address: "BacGiang" },
+        { fullname: "Le Van Y", age: 21, address: "HaNoi" },
+        { fullname: "Hoang Duc F", age: 22, address: "HaNoi" },
+        { fullname: "Tran Duc B", age: 32, address: "LangSon" },
+        { fullname: "Tran Duc B", age: 32, address: "LangSon" },
+        { fullname: "Tran Thi E", age: 32, address: "LangSon" },
+        { fullname: "Nguyen Ngoc V", age: 32, address: "LangSon" },
+        { fullname: "Nguyen Minh E", age: 32, address: "LangSon" },
+        { fullname: "Nguyen Duc H", age: 32, address: "LangSon" },
+      ];
+      function getFirstName(fullname) {
+        if (!fullname || typeof fullname !== "string") {
+          return "";
+        }
+        const parts = fullname.trim().split(" ");
+        return parts.length > 0 ? parts[parts.length - 1] : "";
+      }
+
+      function sortedUsers(arrayUser) {
+        const sortedArray = [...arrayUser];
+
+        sortedArray.sort((userA, userB) => {
+          const firstNameA = getFirstName(userA.fullname);
+          const firstNameB = getFirstName(userB.fullname);
+
+          return firstNameA.localeCompare(firstNameB);
+        });
+
+        return sortedArray;
+      }
+
+      const sortedResult = sortedUsers(users);
+      console.log(sortedResult);
+    </script>
+  </body>
+</html>

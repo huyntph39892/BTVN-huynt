@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const fruits = [
+        "apple",
+        "banana",
+        "kiwi",
+        "kiwi",
+        "banana",
+        "orange",
+        "apple",
+        "kiwi",
+      ];
+      function countOccurrences(arr) {
+        if (!Array.isArray(arr)) {
+          return false;
+        }
+        return arr.reduce((acc, item) => {
+          acc[item] = (acc[item] || 0) + 1;
+          return acc;
+        }, {});
+      }
+      const fruitCounts = countOccurrences(fruits);
+      console.log(fruitCounts);
+    </script>
+  </body>
+</html>

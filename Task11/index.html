@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Tam Giác</h1>
+    <script>
+        // function isTriangle(a, b, c) {
+        //     if(a+ b >c && b+ c > a && a + c > b){
+        //         return true;
+        //     }
+        //     return false;
+        // }
+        // console.log(isTriangle(4, 1, 7));
+        // console.log(isTriangle(4, 5, 7));
+        let a = parseFloat(prompt("Nhap a: "));
+        let b = parseFloat(prompt("Nhap b: "));;
+        let c = parseFloat(prompt("Nhap c: "));
+
+        function isTriangle(a, b, c){
+            let x = a + b > c && b + c > a && a + c > b;
+            if(x){
+                 return "day la tam giac";
+            }
+          return "sai";
+      }
+        console.log(isTriangle(a, b, c));
+
+        
+        
+    </script>
+</body>
+</html>
