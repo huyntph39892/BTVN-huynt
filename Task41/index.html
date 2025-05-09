@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 1. Hiển thị danh sách sinh viên (2 điểm)
+
+Hiển thị danh sách sinh viên dưới dạng bảng
+Tính điểm trung bình và học lực
+Giỏi: >= 8
+Khá: >=6.5 - 8
+Trung bình: >=5 - 6.5
+Yếu: < 5
+Bảng bao gồm các thông tin: Id, Họ tên, Điểm Toán, Điểm Anh, Điểm Khoa học, Điểm trung bình, Học lực và 2 nút: "Xóa", "Cập nhật điểm".
+2. Thêm sinh viên mới (2 điểm)
+
+Form nhập: Họ tên, Điểm Toán, Điểm Anh, Điểm Khoa học.
+Khi nhấn "Thêm sinh viên", cập nhật danh sách.
+Kiểm tra dữ liệu và hiển thị lỗi khi các trường không nhập đủ, đúng dữ liệu
+3. Xóa sinh viên (1 điểm)
+
+Mỗi sinh viên có nút "Xóa" tương ứng, cập nhật danh sách.
+Sau khi xóa thành cồng hiển thông báo alert
+4. Cập nhật điểm sinh viên (2 điểm)
+
+Nút "Cập nhật điểm" mở input chỉnh sửa được các đầu điểm của sinh viên (lựu ý: không thể cập nhật tên sinh viên).
+Nhấn "Lưu", tính lại điểm trung bình, học lực và cập nhật lại giao diện
+5. Tìm kiếm sinh viên theo tên (1 điểm)
+
+Ô input tìm kiếm sẽ lọc danh sách theo tên (không phân biệt hoa thường).
+        */
+        const student = [
+  {
+    id: 1,
+    name: "Toro",
+    math: 8,
+    english: 7,
+    science: 6,
+  },
+  {
+    id: 2,
+    name: "Ly Tieu Long",
+    math: 4,
+    english: 3,
+    science: 5,
+  },
+  {
+    id: 3,
+    name: "Donal Trump",
+    math: 9,
+    english: 9,
+    science: 10,
+  },
+];
+
+        function calculateAverage(student) {
+            return (student.math + student.english + student.science) / 3;
+        }
+
+        function getGrade(average) {
+            if (average >= 8) return "Giỏi";
+            if (average >= 6.5) return "Khá";
+            if (average >= 5) return "Trung bình";
+            return "Yếu";
+        }
+
+        function renderTable() {
+            const table = document.createElement("table");
+            const headerRow = document.createElement("tr");
+            const headers = ["Id", "Họ tên", "Điểm Toán", "Điểm Anh", "Điểm Khoa học", "Điểm trung bình", "Học lực", "Xóa", "Cập nhật điểm"];
+
+            headers.forEach(header => {
+                const th = document.createElement("th");
+                th.textContent = header;
+                headerRow.appendChild(th);
+            });
+
+            table.appendChild(headerRow);
+
+            student.forEach(stu => {
+                const row = document.createElement("tr");
+                const average = calculateAverage(stu);
+                const grade = getGrade(average);
+
+                Object.values(stu).forEach(value => {
+                    const td = document.createElement("td");
+                    td.textContent = value;
+                    row.appendChild(td);
+                });
+
+                const averageTd = document.createElement("td");
+                averageTd.textContent = average.toFixed(2);
+                row.appendChild(averageTd);
+
+                const gradeTd = document.createElement("td");
+                gradeTd.textContent = grade;
+                row.appendChild(gradeTd);
+
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Xóa";
+                deleteBtn.onclick = () => deleteStudent(stu.id);
+                row.appendChild(deleteBtn);
+
+                const updateBtn = document.createElement("button");
+                updateBtn.textContent = "Cập nhật điểm";
+                updateBtn.onclick = () => updateStudent(stu.id);
+                row.appendChild(updateBtn);
+
+                table.appendChild(row);
+            });
+
+            document.body.appendChild(table);
+        }
+
+        function deleteStudent(id) {
+            const index = student.findIndex(stu => stu.id === id);
+            if (index !== -1) {
+                student.splice(index, 1);
+                renderTable();
+            }
+        }
+
+        function updateStudent(id) {
+            const stu = student.find(stu => stu.id === id);
+            if (stu) {
+                const newMath = prompt("Nhập điểm Toán:", stu.math);
+                const newEnglish = prompt("Nhập điểm Anh:", stu.english);
+                const newScience = prompt("Nhập điểm Khoa học:", stu.science);
+
+                if (newMath && newEnglish && newScience) {
+                    stu.math = parseFloat(newMath);
+                    stu.english = parseFloat(newEnglish);
+                    stu.science = parseFloat(newScience);
+                    renderTable();
+                } else {
+                    alert("Vui lòng nhập đầy đủ thông tin.");
+                }
+            }
+        }
+
+        function addStudent() {
+            const name = prompt("Nhập họ tên:");
+            const math = prompt("Nhập điểm Toán:");
+            const english = prompt("Nhập điểm Anh:");
+            const science = prompt("Nhập điểm Khoa học:");
+
+            if (name && math && english && science) {
+                const newStudent = {
+                    id: student.length + 1,
+                    name,
+                    math: parseFloat(math),
+                    english: parseFloat(english),
+                    science: parseFloat(science),
+                };
+                student.push(newStudent);
+                renderTable();
+            } else {
+                alert("Vui lòng nhập đầy đủ thông tin.");
+            }
+        }
+        function searchStudent() {
+            const searchTerm = document.getElementById("search").value.toLowerCase();
+            const filteredStudents = student.filter(stu => stu.name.toLowerCase().includes(searchTerm));
+            renderFilteredTable(filteredStudents);
+        }
+
+        
+    </script>
+</body>
+</html>
