@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sản phẩm</title>
+  </head>
+  <body>
+    <input type="text" id="searchInput" placeholder="Tìm sản phẩm..." />
+    <button onclick="handleSearch()">Tìm kiếm</button>
+    <button onclick="handleSort('asc')">Sắp xếp tăng</button>
+    <button onclick="handleSort('desc')">Sắp xếp giảm</button>
+
+    <div id="productCount"></div>
+    <div id="products"></div>
+
+    <div class="paginate">
+      <button id="preview">preview</button>
+      <button id="current-page"></button>
+      <button id="next">next</button>
+    </div>
+    <div id="productDetail"></div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
