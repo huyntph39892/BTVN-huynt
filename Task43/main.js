@@ -1,103 +1,50 @@
-let allProducts = [];
-let currentPage = 1;
-const productsPerPage = 6;
+import React, { useEffect, useState } from "react";
 
-async function fetchProducts(url = "https://dummyjson.com/products") {
-  const res = await fetch(url);
-  const data = await res.json();
-  allProducts = data.products;
-  currentPage = 1;
-  renderProducts();
-  updatePageNumber();
-}
+const url = "https://dummyjson.com/products";
 
-function renderProducts() {
-  const start = (currentPage - 1) * productsPerPage;
-  const end = start + productsPerPage;
-  const visibleProducts = allProducts.slice(start, end);
+const LifeCycleExample = () => {
+  const [products, setProducts] = useState([]);
+  const [limit, setLimit] = useState(4);
+  const fetchAPI = async () => {
+    try {
+      const res = await fetch(`${url}?limit=${limit}&skip=0`);
+      const data = await res.json();
+      console.log(data);
+      setProducts(data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const container = document.getElementById("products");
-  container.innerHTML = "";
-  visibleProducts.forEach((p) => {
-    container.innerHTML += `
-      <div class="product-card">
-        <img src="${p.thumbnail}" alt="${p.title}">
-        <h3>${p.title}</h3>
-        <p>${p.description.slice(0, 50)}...</p>
-        <p><strong>${p.price}$</strong></p>
-        <button onclick="viewDetail(${p.id})">Xem chi tiết</button>
+  useEffect(() => {
+    fetchAPI();
+  }, [limit]);
+
+  const handleLoadMore = () => {
+    setLimit(limit + 4);
+  };
+
+  // console.log("Component được sinh ra");
+  // useEffect(() => {
+  // 	console.log("Ngay sau khi component được render");
+  // 	return () => {
+  // 		console.log("Chạy ngay trước khi component bị gỡ");
+  // 	};
+  // }, []);
+  return (
+    <>
+      <h2>test</h2>
+      <div>
+        {products.map((item) => (
+          <div key={item.id}>
+            <p>{item.id}</p>
+            <h2>{item.title}</h2>
+          </div>
+        ))}
       </div>
-    `;
-  });
+      <button onClick={handleLoadMore}>Xem them</button>
+    </>
+  );
+};
 
-  document.getElementById(
-    "productCount"
-  ).innerText = `Đang xem ${visibleProducts.length} / ${allProducts.length} sản phẩm`;
-}
-
-function handleSearch() {
-  const query = document.getElementById("searchInput").value.trim();
-  if (!query) {
-    fetchProducts();
-    return;
-  }
-  fetch(`https://dummyjson.com/products/search?q=${query}`)
-    .then((res) => res.json())
-    .then((data) => {
-      allProducts = data.products;
-      currentPage = 1;
-      renderProducts();
-      updatePageNumber();
-    });
-}
-
-function handleSort(order) {
-  if (order === "asc") {
-    allProducts.sort((a, b) => a.price - b.price);
-  } else if (order === "desc") {
-    allProducts.sort((a, b) => b.price - a.price);
-  }
-  renderProducts();
-}
-
-function viewDetail(id) {
-  fetch(`https://dummyjson.com/products/${id}`)
-    .then((res) => res.json())
-    .then((p) => {
-      document.getElementById("productDetail").innerHTML = `
-        <h2>${p.title}</h2>
-        <img src="${p.thumbnail}" width="300"><br>
-        <p><strong>Giá:</strong> ${p.price}$</p>
-        <p><strong>Mô tả:</strong> ${p.description}</p>
-        <p><strong>Brand:</strong> ${p.brand}</p>
-        <button onclick="closeDetail()">Đóng</button>
-      `;
-    });
-}
-
-function closeDetail() {
-  document.getElementById("productDetail").innerHTML = "";
-}
-
-function updatePageNumber() {
-  document.getElementById("current-page").innerText = currentPage;
-}
-
-document.getElementById("preview").addEventListener("click", function () {
-  if (currentPage > 1) {
-    currentPage--;
-    renderProducts();
-    updatePageNumber();
-  }
-});
-
-document.getElementById("next").addEventListener("click", function () {
-  const totalPages = Math.ceil(allProducts.length / productsPerPage);
-  if (currentPage < totalPages) {
-    currentPage++;
-    renderProducts();
-    updatePageNumber();
-  }
-});
-
-fetchProducts();
+export default LifeCycleExample;
